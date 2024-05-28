@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* @layer base {
+  body {
+    font-size: 22px;
+  }
+} */
+
+@layer utilities {
+  .button-hover {
+    color: hsl(0, 0%, 8%);
+    background-color: hsl(0, 0%, 98%);
+  }
+}
+
+.desktop-dropdown-items {
+  position: absolute;
+  top: 4rem;
+  width: 160px;
+  flex-direction: row;
+  border-radius: 15px;
+  background-color: white;
+  padding: 15px 15px;
+}
+
+.mobile-dropdown-items {
+  width: 150px;
+  flex-direction: row;
+  padding-top: 16px;
+  padding-left: 35px;
+}
