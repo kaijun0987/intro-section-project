@@ -44,20 +44,20 @@ const NavBar = ({
           isOpenDropdown={openDropdown === 2}
           setIsOpenDropdown={() => setOpenDropdown(openDropdown === 2 ? 0 : 2)}
         />
-        <Button text="Careers" fontSize="text-base" />
-        <Button text="About" fontSize="text-base" />
+        <Button children="Careers" fontSize="text-base" />
+        <Button children="About" fontSize="text-base" />
       </div>
       <div className="hidden lg:flex gap-x-16 py-0 ms-auto ">
         {loginUsername == "" ? (
           <Button
-            text="Login"
+            children="Login"
             fontSize="text-base"
             marginInline="ms-auto"
             onClick={onClickLoginButton}
           />
         ) : (
           <Button
-            text={`${loginUsername}`}
+            children={`${loginUsername}`}
             fontSize="text-base"
             marginInline="ms-auto"
             onClick={() => {}}
@@ -65,7 +65,7 @@ const NavBar = ({
         )}
         {loginUsername == "" ? (
           <Button
-            text="Register"
+            children="Register"
             fontSize="text-base"
             isBorder
             borderRadius="rounded-xl"
@@ -74,7 +74,7 @@ const NavBar = ({
           />
         ) : (
           <Button
-            text="Logout"
+            children="Logout"
             fontSize="text-base"
             isBorder
             borderRadius="rounded-xl"

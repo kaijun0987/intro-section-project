@@ -13,26 +13,32 @@ function App() {
     data: res,
     isSuccess,
     isLoading,
-  } = useGet("/auth/me", localStorage.getItem("token") || "");
+    error,
+  } = useGet("/auth/me", localStorage.getItem("token") || "", "getme");
+
   useEffect(() => {
+    if (error) {
+      localStorage.removeItem("token");
+    }
+
     if (localStorage.getItem("token") == null || !isSuccess) return;
     updateUsername(res?.data.username || "");
-  }, [isSuccess, res, updateUsername]);
+  }, [isSuccess, res, updateUsername, error]);
+
+  if (isLoading) {
+    return (
+      <div className="flex h-screen w-full justify-center items-center">
+        <Refresh />
+      </div>
+    );
+  }
 
   return (
-    <>
-      {isLoading ? (
-        <div className="flex h-screen w-full justify-center items-center">
-          <Refresh />
-        </div>
-      ) : (
-        <Routes>
-          <Route path="/" element={<HomePage />} />
-          <Route path="/login" element={<LoginPage />} />
-          <Route path="/register" element={<RegisterPage />} />
-        </Routes>
-      )}
-    </>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/login" element={<LoginPage />} />
+      <Route path="/register" element={<RegisterPage />} />
+    </Routes>
   );
 }
 

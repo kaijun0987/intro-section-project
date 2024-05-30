@@ -8,6 +8,8 @@ import MobileMenu from "../components/MobileMenu";
 import NavBar from "../components/NavBar";
 import useUser from "../states/user-state";
 import { useNavigate } from "react-router-dom";
+import { useQueryClient } from "@tanstack/react-query";
+// import { usePost } from "../hooks/useAxios";
 
 const HomePage = () => {
   const [isOpenMobileMenu, setIsOpenMobileMenu] = useState(false);
@@ -19,6 +21,8 @@ const HomePage = () => {
 
   const navigator = useNavigate();
 
+  const queryClient = useQueryClient();
+
   function handleOnClickButtonLogin() {
     navigator("login");
   }
@@ -28,8 +32,9 @@ const HomePage = () => {
   }
 
   function handleOnClickButtonLogout() {
-    updateUsername("");
     localStorage.removeItem("token");
+    updateUsername("");
+    queryClient.clear();
   }
 
   return (
@@ -64,13 +69,14 @@ const HomePage = () => {
           </h2>
           <div className="flex justify-center lg:justify-start">
             <Button
-              text="Learn more"
               bgColor="bg-cusblack"
               textColor="text-cuswhite"
               isBorder
               verticalPadding="px-7"
               horizontalPadding="py-3"
-            />
+            >
+              Learn more
+            </Button>
           </div>
 
           <div className="flex flex-row gap-x-5 lg:gap-x-12 pt-12 lg:pt-28 justify-center lg:justify-start">
@@ -94,7 +100,10 @@ const HomePage = () => {
             onClickCloseMenuIcon={() => setIsOpenMobileMenu(!isOpenMobileMenu)}
             openDropdown={openDropdown}
             setOpenDropdown={setOpenDropdown}
-            loginUsername={`${username}`}
+            loginUsername={username}
+            onClickLoginButton={handleOnClickButtonLogin}
+            onClickRegisterButton={handleOnClickButtonRegister}
+            onClickLogoutButton={handleOnClickButtonLogout}
           />
         )}
       </div>

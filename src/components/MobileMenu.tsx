@@ -59,22 +59,22 @@ const MobileMenu = ({
             />
             {openDropdown === 4 && <DropdownItems dropdownData={companys} />}
           </div>
-          <Button text="Careers" fontSize="text-base" />
-          <Button text="About" fontSize="text-base" />
+          <Button children="Careers" fontSize="text-base" />
+          <Button children="About" fontSize="text-base" />
         </div>
         <div className="flex flex-col items-center gap-4 mt-5">
           {loginUsername == "" ? (
             <Button
-              text="Login"
+              children="Login"
               fontSize="text-base"
               onClick={onClickLoginButton}
             />
           ) : (
-            <Button text={`${loginUsername}`} fontSize="text-base" />
+            <Button children={`${loginUsername}`} fontSize="text-base" />
           )}
           {loginUsername == "" ? (
             <Button
-              text="Register"
+              children="Register"
               isBorder
               fontSize="text-base"
               horizontalPadding="px-20"
@@ -83,7 +83,7 @@ const MobileMenu = ({
             />
           ) : (
             <Button
-              text="Logout"
+              children="Logout"
               isBorder
               fontSize="text-base"
               horizontalPadding="px-20"

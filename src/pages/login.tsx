@@ -1,7 +1,7 @@
 import { FieldValues, SubmitHandler, useForm } from "react-hook-form";
 import Button from "../components/Button";
 import TextField from "../components/TextField";
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import * as yup from "yup";
 import { yupResolver } from "@hookform/resolvers/yup";
@@ -26,15 +26,18 @@ const LoginPage = () => {
     register,
     handleSubmit,
     formState: { errors },
-  } = useForm({ resolver: yupResolver(formSchema) });
+  } = useForm({
+    defaultValues: { username: "", password: "" },
+    resolver: yupResolver(formSchema),
+  });
   const { updateUsername } = useUser();
 
-  const [isVisible, setIsVisible] = useState(false);
   const navigator = useNavigate();
   const { mutate, isPending } = usePost();
   const { data, isSuccess } = useGet(
     "/auth/me",
-    localStorage.getItem("token") || ""
+    localStorage.getItem("token") || "",
+    "getme"
   );
 
   const OnSubmit: SubmitHandler<FieldValues> = (value) => {
@@ -42,8 +45,9 @@ const LoginPage = () => {
       {
         url: "/auth/login",
         param: {
-          username: value["username"],
+          username: value.username,
           password: value["password"],
+          expiresInMins: 1,
         },
       },
       {
@@ -79,24 +83,20 @@ const LoginPage = () => {
             field="password"
             errors={errors}
             placeholder="password"
-            isVisible={isVisible}
-            setVisible={() => setIsVisible(!isVisible)}
+            type="password"
           />
-          {isPending ? (
-            <div className="flex justify-center">
-              <Refresh />
-            </div>
-          ) : (
-            <Button
-              text="Login"
-              isBorder
-              marginInline="mt-8"
-              // onClick={handleSubmit(OnSubmit)}
-            />
-          )}
+          <Button isBorder marginInline="mt-8">
+            {isPending ? (
+              <div className="flex flex-1 justify-center">
+                <Refresh />
+              </div>
+            ) : (
+              "Login"
+            )}
+          </Button>
         </form>
         <Button
-          text="Register"
+          children="Register"
           isBorder
           marginInline="mt-2"
           onClick={() => navigator("/register")}

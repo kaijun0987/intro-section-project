@@ -1,4 +1,6 @@
-export const features: DropdownItem[] = [
+import TDropdownItem from "../types/dropdown";
+
+export const features: TDropdownItem[] = [
   {
     icon: "/public/assets/icon-todo.svg",
     title: "Todo List",

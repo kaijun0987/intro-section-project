@@ -1,5 +1,5 @@
 type TButtonProps = {
-  text: string;
+  children: React.ReactNode;
   bgColor?: string;
   textColor?: string;
   isBorder?: boolean;
@@ -14,7 +14,7 @@ type TButtonProps = {
 };
 
 const Button = ({
-  text,
+  children,
   bgColor = "bg-cuswhite",
   textColor = "text-cusgray",
   fontWeight = "font-medium",
@@ -34,7 +34,7 @@ const Button = ({
         isBorder && `border ${borderRadius} ${borderColor}`
       } hover:button-hover`}
     >
-      {text}
+      {children}
     </button>
   );
 };

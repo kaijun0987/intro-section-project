@@ -1,3 +1,4 @@
+import { useState } from "react";
 import {
   FieldErrors,
   FieldPath,
@@ -12,8 +13,7 @@ type TFormInputProps<T extends FieldValues> = {
   field: FieldPath<T>;
   customDecoration?: string;
   placeholder?: string;
-  isVisible?: boolean;
-  setVisible?: () => void;
+  type?: "text" | "password";
 };
 
 const TextField = <T extends FieldValues>({
@@ -22,28 +22,35 @@ const TextField = <T extends FieldValues>({
   field,
   customDecoration,
   placeholder,
-  isVisible,
-  setVisible,
+  type = "text",
 }: TFormInputProps<T>) => {
+  const [isVisible, setVisible] = useState(true);
   return (
     <>
       <div
-        className={`${
+        className={
           customDecoration ??
           "rounded-2xl w-full px-3 py-2 mt-2 border border-cusblack flex flex-row items-center"
-        }`}
+        }
       >
         <input
           className="bg-cuswhite border-none focus:border-none focus:outline-none "
-          type={isVisible == null ? "text" : isVisible ? "text" : "password"}
+          type={type === "password" && isVisible ? "password" : "text"}
           placeholder={placeholder}
           {...registerInput(field)}
         />
-        {isVisible == null ? null : isVisible ? (
-          <AiOutlineEye className="ms-auto" onClick={setVisible} />
-        ) : (
-          <AiOutlineEyeInvisible className="ms-auto" onClick={setVisible} />
-        )}
+        {type === "password" &&
+          (isVisible ? (
+            <AiOutlineEyeInvisible
+              className="ms-auto"
+              onClick={() => setVisible(false)}
+            />
+          ) : (
+            <AiOutlineEye
+              className="ms-auto"
+              onClick={() => setVisible(true)}
+            />
+          ))}
       </div>
       {errors && errors[`${field}`] && (
         <span className="text-cusred">{`${errors[`${field}`]?.message}`}</span>

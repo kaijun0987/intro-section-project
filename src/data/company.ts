@@ -1,4 +1,6 @@
-export const companys: DropdownItem[] = [
+import TDropdownItem from "../types/dropdown";
+
+export const companys: TDropdownItem[] = [
   {
     title: "History",
   },
