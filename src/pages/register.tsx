@@ -5,6 +5,7 @@ import { z } from "zod";
 import { zodResolver } from "@hookform/resolvers/zod";
 import useUser from "../states/user-state";
 import { useNavigate } from "react-router-dom";
+import { FaArrowLeft } from "react-icons/fa";
 
 const formSchema = z
   .object({
@@ -42,12 +43,11 @@ const RegisterPage = () => {
   return (
     <div className="flex h-screen min-w-full justify-center items-center px-3">
       <div className="bg-cuswhite flex px-4 py-6 flex-col rounded-lg">
-        <h1 className="font-bold text-5xl mb-9">Register</h1>
+        <h1 className="font-bold text-5xl mb-9 flex flex-row items-center gap-x-5">
+          <FaArrowLeft size={30} onClick={() => navigate("/")} /> Register
+        </h1>
 
-        <form
-          className="flex flex-col gap-y-2"
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className="flex flex-col" onSubmit={handleSubmit(onSubmit)}>
           <TextField
             registerInput={register}
             errors={errors}

@@ -8,6 +8,7 @@ import { yupResolver } from "@hookform/resolvers/yup";
 import useUser from "../states/user-state";
 import { useGet, usePost } from "../hooks/useAxios";
 import Refresh from "../components/Refresh";
+import { FaArrowLeft } from "react-icons/fa";
 
 const formSchema = yup.object().shape({
   username: yup
@@ -67,11 +68,10 @@ const LoginPage = () => {
   return (
     <div className="flex h-screen min-w-full justify-center items-center px-3">
       <div className="bg-cuswhite flex px-4 py-6 flex-col rounded-lg h-auto min-w-80 max-w-80">
-        <h1 className="font-bold text-5xl mb-9">Login</h1>
-        <form
-          className="flex flex-col gap-y-2"
-          onSubmit={handleSubmit(OnSubmit)}
-        >
+        <h1 className="font-bold flex flex-row text-5xl mb-9 items-center gap-x-5">
+          <FaArrowLeft size={30} onClick={() => navigator("/")} /> Login
+        </h1>
+        <form className="flex flex-col" onSubmit={handleSubmit(OnSubmit)}>
           <TextField
             registerInput={register}
             field="username"

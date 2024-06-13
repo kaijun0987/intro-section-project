@@ -32,7 +32,7 @@ const Button = ({
       onClick={onClick}
       className={` ${marginInline} ${horizontalPadding} ${verticalPadding}  items-center ${bgColor} ${textColor} ${fontSize} ${fontWeight} ${
         isBorder && `border ${borderRadius} ${borderColor}`
-      } hover:button-hover`}
+      }  lg:hover:button-hover active:button-hover`}
     >
       {children}
     </button>

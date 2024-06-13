@@ -52,8 +52,12 @@ const TextField = <T extends FieldValues>({
             />
           ))}
       </div>
-      {errors && errors[`${field}`] && (
-        <span className="text-cusred">{`${errors[`${field}`]?.message}`}</span>
+      {errors && errors[`${field}`] ? (
+        <span className="text-cusred text-[10px] ms-0">{`${
+          errors[`${field}`]?.message
+        }`}</span>
+      ) : (
+        <div className="h-[15px]" />
       )}
     </>
   );

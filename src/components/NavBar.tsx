@@ -56,12 +56,9 @@ const NavBar = ({
             onClick={onClickLoginButton}
           />
         ) : (
-          <Button
-            children={`${loginUsername}`}
-            fontSize="text-base"
-            marginInline="ms-auto"
-            onClick={() => {}}
-          />
+          <div className=" text-base ms-auto items-center flex">
+            {loginUsername}
+          </div>
         )}
         {loginUsername == "" ? (
           <Button

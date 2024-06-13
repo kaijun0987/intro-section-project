@@ -63,15 +63,22 @@ const MobileMenu = ({
           <Button children="About" fontSize="text-base" />
         </div>
         <div className="flex flex-col items-center gap-4 mt-5">
-          {loginUsername == "" ? (
-            <Button
-              children="Login"
-              fontSize="text-base"
-              onClick={onClickLoginButton}
-            />
-          ) : (
-            <Button children={`${loginUsername}`} fontSize="text-base" />
-          )}
+          {
+            loginUsername == "" ? (
+              <Button
+                children="Login"
+                fontSize="text-base"
+                onClick={onClickLoginButton}
+              />
+            ) : (
+              <div className=" text-base items-center flex">
+                {loginUsername}
+              </div>
+            )
+            // (
+            //   <Button children={`${loginUsername}`} fontSize="text-base" />
+            // )
+          }
           {loginUsername == "" ? (
             <Button
               children="Register"
