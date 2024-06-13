@@ -17,6 +17,9 @@ const DropdownItems = ({
             key={data.title}
             className="flex gap-3 left-80 items-center py-2 text-cusgray font-medium text-lg lg:hover:button-hover active:button-hover"
           >
+            {dropdownDecoration === "mobile-dropdown-items" && (
+              <div className="w-[35px]" />
+            )}
             {data.icon && (
               <img src={data.icon} className="size-5 object-cover" />
             )}

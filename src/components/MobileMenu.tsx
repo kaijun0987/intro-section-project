@@ -37,7 +37,7 @@ const MobileMenu = ({
           onClick={onClickCloseMenuIcon}
         />
         <div className="flex flex-col items-start pl-5 py-3 gap-y-4">
-          <div>
+          <div className="flex flex-col flex-1 w-full">
             <DropdownButton
               text="Features"
               isItemUnderDropdown={false}
@@ -48,7 +48,7 @@ const MobileMenu = ({
             />
             {openDropdown === 3 && <DropdownItems dropdownData={features} />}
           </div>
-          <div>
+          <div className="flex flex-col flex-1 w-full">
             <DropdownButton
               text="Company"
               isItemUnderDropdown={false}

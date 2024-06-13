@@ -47,7 +47,7 @@ const HomePage = () => {
   }, [screenSize.width]);
 
   return (
-    <div className="bg-cuswhite h-screen flex-1  flex-col ">
+    <div className="bg-cuswhite h-screen flex flex-1  flex-col ">
       <NavBar
         onMobileMenuClick={() => setIsOpenMobileMenu(!isOpenMobileMenu)}
         openDropdown={openDropdown}

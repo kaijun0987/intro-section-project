@@ -26,8 +26,8 @@
 }
 
 .mobile-dropdown-items {
-  width: 150px;
+  width: 100%;
   flex-direction: row;
   padding-top: 16px;
-  padding-left: 35px;
+  cursor: pointer;
 }
